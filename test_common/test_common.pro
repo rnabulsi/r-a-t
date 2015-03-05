@@ -20,7 +20,8 @@ SOURCES += test_node.cpp \
     test_main.cpp \
     test_node_binary_search.cpp \
     test_node_hash_table.cpp \
-    test_node_extensive_tree.cpp
+    test_node_extensive_tree.cpp \
+    test_letternode.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -28,7 +29,8 @@ HEADERS += \
     test_node.h \
     test_node_binary_search.h \
     test_node_hash_table.h \
-    test_node_extensive_tree.h
+    test_node_extensive_tree.h \
+    test_letternode.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../common/release/ -lcommon
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../common/debug/ -lcommon

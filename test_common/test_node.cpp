@@ -14,13 +14,13 @@ void TestNode::testCopy() {
              "During the copy the children should be copyed too.");
     QVERIFY2(parentCopy.letterChildren().size() ==
                  parent->letterChildren().size(),
-             "The copy should not have different number or letter children.");
+             "The copy should not have different number of letter children.");
     QVERIFY2(parentCopy.letterChildren().at(0) ==
                  parent->letterChildren().at(0),
              "The copied letter children should be the same.");
     QVERIFY2(parentCopy.resultChildren().size() ==
                  parent->resultChildren().size(),
-             "The copy should not have different number or result children.");
+             "The copy should not have different number of result children.");
     QVERIFY2(parentCopy.resultChildren().at(0) ==
                  parent->resultChildren().at(0),
              "The copied result children should be the same.");
@@ -41,16 +41,16 @@ void TestNode::testAssignment() {
     Node parentCopy;
     parentCopy = *parent;
     QVERIFY2(parentCopy.hasChildren(),
-             "During the assignment the children should be copyed too.");
+             "During the assignment the children should be copyed.");
     QVERIFY2(parentCopy.letterChildren().size() ==
                  parent->letterChildren().size(),
-             "The copy should not have different number or letter children.");
+             "The copy should not have different number of letter children.");
     QVERIFY2(parentCopy.letterChildren().at(0) ==
                  parent->letterChildren().at(0),
              "The copied letter children should be the same.");
     QVERIFY2(parentCopy.resultChildren().size() ==
                  parent->resultChildren().size(),
-             "The copy should not have different number or result children.");
+             "The copy should not have different number of result children.");
     QVERIFY2(parentCopy.resultChildren().at(0) ==
                  parent->resultChildren().at(0),
              "The copied result children should be the same.");
@@ -73,7 +73,6 @@ void TestNode::testToString() {
 }
 
 void TestNode::testLetterChild() {
-    return;
     Node *parent = new Node();
     parent->addChild(new LetterNode('D'));
     parent->addChild(new LetterNode('F'));

@@ -2,6 +2,7 @@
 #define LETTERNODE_H
 
 #include <QObject>
+#include <QDebug>
 #include <node.h>
 
 /*!
@@ -13,15 +14,15 @@ public:
      * \brief LetterNode the constructor.
      * \param parent a parent node.
      */
-    explicit LetterNode(Node *parent = nullptr) : Node(parent) {}
+    explicit LetterNode(Node *parent = nullptr)
+        : Node(parent), m_letter('\0') {}
 
     /*!
      * \brief LetterNode the copy constructor.
      * \param node the node to copy from.
      */
-    explicit LetterNode(const LetterNode &node) : Node(node) {
-        m_letter = node.m_letter;
-    }
+    explicit LetterNode(const LetterNode &node)
+        : Node(node), m_letter(node.m_letter) {}
 
     /*!
      * \brief LetterNode the constructor that intializes node with a letter.
@@ -41,8 +42,7 @@ public:
      */
     LetterNode &operator=(const LetterNode &node) {
         m_letter = node.letter();
-        m_result_children.clear();
-        m_result_children = node.m_result_children;
+        Node::operator=(node);
         return *this;
     }
 
@@ -50,7 +50,7 @@ public:
      * \brief toString returns string representation of a node.
      * \return string representation of a node.
      */
-    virtual QString toString(bool) const {
+    virtual QString toString(bool = false) const {
         return QString("--->(")
             .append((m_letter == '\0' ? '$' : m_letter))
             .append(")");
@@ -68,72 +68,69 @@ public:
      */
     inline void setLetter(const QChar &letter) { m_letter = letter; }
 
+    /*!
+     * \brief operator == equality operator.
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter fields are equal.
+     */
+    inline bool operator==(const LetterNode &right) const {
+        return m_letter == right.m_letter;
+    }
+
+    /*!
+     * \brief operator != not equal operator
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter fields are not equal.
+     */
+    inline bool operator!=(const LetterNode &right) const {
+        return m_letter != right.m_letter;
+    }
+
+    /*!
+     * \brief operator < less than operator.
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter from this instance is
+     * less than the one from the right operand.
+     */
+    inline bool operator<(const LetterNode &right) const {
+        return m_letter < right.m_letter;
+    }
+
+    /*!
+     * \brief operator > greater than operator.
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter from this instance is
+     * greater than the one from the right operand.
+     */
+    inline bool operator>(const LetterNode &right) const {
+        return m_letter > right.m_letter;
+    }
+
+    /*!
+     * \brief operator <= less or equal operator.
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter from this instance is
+     * less than or equal to the one from the right operand.
+     */
+    inline bool operator<=(const LetterNode &right) const {
+        return m_letter <= right.m_letter;
+    }
+
+    /*!
+     * \brief operator >= greater or equal operator.
+     * \param right right hand side operand.
+     * \return \code true if \ref LetterNode::m_letter from this instance is
+     * greater than or equal to the one from the right operand.
+     */
+    inline bool operator>=(const LetterNode &right) const {
+        return m_letter >= right.m_letter;
+    }
+
 private:
+    /*!
+     * \brief m_letter stored letter.
+     */
     QChar m_letter;
 };
-
-/*!
- * \brief operator == equality operator.
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter fields operands are equal.
- */
-inline bool operator==(const LetterNode &left, const LetterNode &right) {
-    return left.letter() == right.letter();
-}
-
-/*!
- * \brief operator != not equal operator
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter fields are not equal.
- */
-inline bool operator!=(const LetterNode &left, const LetterNode &right) {
-    return left.letter() != right.letter();
-}
-
-/*!
- * \brief operator < less than operator.
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter from left operand is less
- * than the one from the right operand.
- */
-inline bool operator<(const LetterNode &left, const LetterNode &right) {
-    return left.letter() < right.letter();
-}
-
-/*!
- * \brief operator > greater than operator.
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter from left operand is greater
- * than the one from the right operand.
- */
-inline bool operator>(const LetterNode &left, const LetterNode &right) {
-    return left.letter() > right.letter();
-}
-
-/*!
- * \brief operator <= less or equal operator.
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter from left operand is less
- * than or equal to the one from the right operand.
- */
-inline bool operator<=(const LetterNode &left, const LetterNode &right) {
-    return !(left.letter() > right.letter());
-}
-
-/*!
- * \brief operator >= greater or equal operator.
- * \param left left hand side operand.
- * \param right right hand side operand.
- * \return \code true if \ref LetterNode::m_letter from left operand is greater
- * than or equal to the one from the right operand.
- */
-inline bool operator>=(const LetterNode &left, const LetterNode &right) {
-    return !(left.letter() < right.letter());
-}
 
 #endif // LETTERNODE_H

@@ -7,8 +7,11 @@
 #elif defined(EXTENSIVE_TREE)
 #include <test_node_extensive_tree.h>
 #endif
+#include <test_letternode.h>
 
 int main(int argc, char **argv) {
+    int result = 0;
+
     TestNode *testNode = nullptr;
 #if defined(BINARY_SEARCH)
     testNode = new TestNodeBinarySearch;
@@ -17,8 +20,8 @@ int main(int argc, char **argv) {
 #elif defined(EXTENSIVE_TREE)
     testNode = new TestNodeExtensiveTree;
 #endif
-    int result = 0;
     result |= QTest::qExec(testNode, argc, argv);
+    result |= QTest::qExec(QSharedPointer<TestLetterNode>::create().data(), argc, argv);
     delete testNode;
     return result;
 }
