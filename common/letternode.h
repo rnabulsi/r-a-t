@@ -40,21 +40,13 @@ public:
      * \param node a node to assign from.
      * \return updated node.
      */
-    LetterNode &operator=(const LetterNode &node) {
-        m_letter = node.letter();
-        Node::operator=(node);
-        return *this;
-    }
+    LetterNode &operator=(const LetterNode &node);
 
     /*!
      * \brief toString returns string representation of a node.
      * \return string representation of a node.
      */
-    virtual QString toString(bool = false) const {
-        return QString("--->(")
-            .append((m_letter == '\0' ? '$' : m_letter))
-            .append(")");
-    }
+    virtual QString toString(bool = false) const;
 
     /*!
      * \brief letter returns this node's letter.

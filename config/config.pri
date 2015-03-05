@@ -17,9 +17,9 @@ CONFIG += link_prl
 # The node class has to be configured or the compilation will fail.
 DEFINES += HASH_TABLE
 
-# LetterNode class configuration. Look at class documentation for details.
+# ResultNode class configuration. Look at class documentation for details.
 #
-# Possible values:
+# Possible value: REDUCE_THRU_DIACRITICS
 #
-# Values are mutually...
+# Value can be undefined too.
 DEFINES +=
