@@ -1,0 +1,14 @@
+Quick and dirty build instructions. This document will expand with time.
+
+DEPENDENCIES:
+
+- Qt5 sdk version >= 5.2
+- gcc version >= 4.8 or clang version >= 3.4
+
+CONFIGURATION
+
+1. Open config/config.pri file and configure Node class. Currently EXTENSIVE_TREE is broken.
+2. Go outside source directory and create a build directory.
+3. qmake <source_directory>
+4. make
+5. Run Node tests with test_common/test_common. Execute it with -h to see command line options.
