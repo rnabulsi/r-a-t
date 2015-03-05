@@ -1,6 +1,1 @@
-#include "common.h"
-
-
-Common::Common()
-{
-}
+#include <common.h>

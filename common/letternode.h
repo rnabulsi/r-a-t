@@ -47,17 +47,10 @@ public:
     }
 
     /*!
-     * \brief isLetterNode always returns true as all instances are letter
-     * nodes.
-     * \return \code true as all instances are letter nodes.
-     */
-    virtual bool isLetterNode() const override { return true; }
-
-    /*!
      * \brief toString returns string representation of a node.
      * \return string representation of a node.
      */
-    virtual QString toString(bool) const override {
+    virtual QString toString(bool) const {
         return QString("--->(")
             .append((m_letter == '\0' ? '$' : m_letter))
             .append(")");

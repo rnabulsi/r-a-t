@@ -1,6 +1,9 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    common
+    common \
+    test_common
 
 include(config/config.pri)
+
+test_common.depends = common

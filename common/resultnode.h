@@ -4,11 +4,10 @@
 #include <QObject>
 #include <node.h>
 
-class ResultNode : public Node
-{
+class ResultNode : public Node {
 public:
-    ResultNode();
-    ~ResultNode();
+    explicit ResultNode(Node *parent = nullptr) : Node(parent) {}
+    virtual ~ResultNode() {}
 };
 
 #endif // RESULTNODE_H

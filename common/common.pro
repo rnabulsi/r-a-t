@@ -8,6 +8,7 @@ QT       -= gui
 
 TARGET = common
 TEMPLATE = lib
+CONFIG += staticlib
 
 include(../config/config.pri)
 

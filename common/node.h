@@ -6,17 +6,24 @@
 #include <QVector>
 #include <QSharedPointer>
 
+#include <common_global.h>
+
 class LetterNode;
 class ResultNode;
 
 /*!
  * \brief The Node class is an abstract base class for all nodes.
  */
-class Node : public QObject {
-    Q_OBJECT
+class COMMONSHARED_EXPORT Node : public QObject {
 public:
+#if defined(EXTENSIVE_TREE)
+    static const int LETTER_CHILDREN_COUNT = 37;
+#endif
+
     /*!
-     * \brief Node the constructor.
+     * \brief Node the constructor. If the parent is given the node parent will
+     * be
+     * set, however the node will not be added as a child.
      * \param parent a parent node.
      */
     explicit Node(Node *parent = nullptr);
@@ -47,17 +54,17 @@ public:
     Node *parent() const;
 
     /*!
-     * \brief isLetterNode return \code true if this is a letter node.
-     * \return \code true if this is a letter node.
+     * \brief setParent sets a parent to a node.
+     * \param parent new parent.
      */
-    virtual bool isLetterNode() const = 0;
+    void setParent(Node *parent);
 
     /*!
      * \brief toString returns string representation of a node.
      * \param isAffix treat node as affix one.
      * \return string representation of a node.
      */
-    virtual QString toString(bool isAffix = false) const = 0;
+    virtual QString toString(bool isAffix = false) const;
 
     /*!
      * \brief hasChildren returns \code true if the node has any children.
@@ -77,18 +84,19 @@ public:
     }
 
     /*!
-     * \brief letterChildren returns a reference to a vector with letter
-     * children. Implementation is dependent on a specific node type, and we
-     * return reference to avoid inneficient copy constructors for \ref QVector
+     * \brief letterChildren returns a vector with letter children.
+     * Implementation is dependent on a specific node type, and the use
+     * of this function should be avoided as it uses inneficient \ref QVector
+     * copy constructor
      *
-     * \return a reference to a vector with letter children.
+     * \return a vector with letter children.
      */
-    virtual QVector<QSharedPointer<LetterNode>> &letterChildren();
+    QVector<QSharedPointer<LetterNode>> letterChildren();
 
     /*!
      * \brief getLetterChild returns letter node child for given letter.
      * \param letter letter whose child is requested.
-     * \return a letter node child or empty \ref QSharedPtr if it does not
+     * \return a letter node child or empty \ref QSharedPointer if it does not
      * exist.
      */
     virtual QSharedPointer<LetterNode> letterChild(const QChar &letter);
@@ -102,7 +110,7 @@ public:
 
     /*!
      * \brief addChild adds a child to the node.
-     * \param child a child to be addad.
+     * \param child a child to be added.
      */
     virtual void addChild(QSharedPointer<Node> child);
 
@@ -116,10 +124,12 @@ protected:
 #if defined(BINARY_SEARCH)
     QVector<QSharedPointer<LetterNode>> m_letter_children;
 #elif defined(HASH_TABLE)
-    QHash<QChar, QSharedPointer<LetterNode>> m_letter_children
+    QHash<QChar, QSharedPointer<LetterNode>> m_letter_children;
 #elif defined(EXTENSIVE_TREE)
-    QVector<QSharedPointer<LetterNode>> m_letter_children
+    QVector<QSharedPointer<LetterNode>> m_letter_children;
 #endif
+private:
+    Node *m_parent;
 };
 
 #endif // BASENODE_H
