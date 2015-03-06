@@ -5,6 +5,10 @@ DEPENDENCIES:
 - Qt5 sdk version >= 5.2
 - gcc version >= 4.8 or clang version >= 3.4
 
+IMPORTANT NOTE:
+This software requires 64bit system. It may compile under 32bit system but
+it is not guarantied that it will work properly.
+
 CONFIGURATION
 
 1. Open config/config.pri file and configure Node class. Currently EXTENSIVE_TREE is broken.

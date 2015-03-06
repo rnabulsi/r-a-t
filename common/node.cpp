@@ -37,7 +37,7 @@ Node *Node::parent() const { return m_parent; }
 
 void Node::setParent(Node *parent) { m_parent = parent; }
 
-QString Node::toString(bool /* isAffix */) const { return QString(""); }
+QString Node::toString(bool /* isAffix */) const { return QString::null; }
 
 QVector<QSharedPointer<LetterNode>> Node::letterChildren() {
 #if defined(BINARY_SEARCH)

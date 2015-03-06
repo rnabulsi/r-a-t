@@ -25,7 +25,12 @@ public:
      */
     ResultNode &operator=(const ResultNode &node);
 
-    virtual QString toString(bool isAffix = true) const override;
+    /*!
+     * \brief toString returns string representation of the result node.
+     * \param isAffix
+     * \return
+     */
+    virtual QString toString(bool isAffix = true) const;
 
     /*!
      * \brief previousResultNode returns pointer to previous result node,

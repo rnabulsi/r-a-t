@@ -21,5 +21,6 @@ DEFINES += HASH_TABLE
 #
 # Possible value: REDUCE_THRU_DIACRITICS
 #
-# Value can be undefined too.
+# Value can be not defined too, causing default implementation of ResultNode
+# to be compiled.
 DEFINES +=
