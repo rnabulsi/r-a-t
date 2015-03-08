@@ -2,7 +2,7 @@
 #include <letternode.h>
 #include <resultnode.h>
 #include <QtDebug>
-#include <common.h>
+#include <model.h>
 
 Node::Node(Node *parent)
     : QObject(), m_result_children(),
@@ -21,7 +21,6 @@ Node::Node(const Node &node)
 Node::~Node() {
     m_result_children.clear();
     m_letter_children.clear();
-//    qDebug() << __PRETTY_FUNCTION__;
 }
 
 Node &Node::operator=(const Node &node) {

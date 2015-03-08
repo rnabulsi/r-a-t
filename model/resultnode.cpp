@@ -1,8 +1,10 @@
 #include <resultnode.h>
+#include <sqlmanager.h>
 
 ResultNode::ResultNode(Node *parent)
     : Node(parent), m_previous_category_id(0), m_affix_id(0),
-      m_resulting_category_id(63), m_accept_state(true), m_inflection_rule(QString::null) {}
+      m_resulting_category_id(63), m_accept_state(true),
+      m_inflection_rule(QString::null) {}
 
 ResultNode::ResultNode(const ResultNode &node)
     : Node(node), m_previous_category_id(node.m_previous_category_id),
@@ -32,7 +34,7 @@ ResultNode &ResultNode::operator=(const ResultNode &node) {
 
 ResultNode *ResultNode::previousResultNode() const {
     Node *previous = this->parent();
-    while(previous != nullptr) {
+    while (previous != nullptr) {
         if (dynamic_cast<ResultNode *>(previous) != nullptr) {
             return dynamic_cast<ResultNode *>(previous);
         }
@@ -42,5 +44,12 @@ ResultNode *ResultNode::previousResultNode() const {
 }
 
 QString ResultNode::toString(bool isAffix) const {
-    return QString::null;
+    QString retVal("-%1>[%2]");
+    retVal = retVal.arg(QString("%1").arg(
+        isAffix ? SqlManager::instance().categoryName(m_previous_category_id)
+                : QString("%1").arg(m_previous_category_id)));
+    retVal = retVal.arg(QString("%1").arg(
+        isAffix ? SqlManager::instance().categoryName(m_resulting_category_id)
+                : QString("%1").arg(m_resulting_category_id)));
+    return retVal;
 }

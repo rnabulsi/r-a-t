@@ -6,15 +6,13 @@
 #include <QVector>
 #include <QSharedPointer>
 
-#include <common_global.h>
-
 class LetterNode;
 class ResultNode;
 
 /*!
  * \brief The Node class is an abstract base class for all nodes.
  */
-class COMMONSHARED_EXPORT Node : public QObject {
+class Node : public QObject {
 public:
 #if defined(EXTENSIVE_TREE)
     static const int LETTER_CHILDREN_COUNT = 37;

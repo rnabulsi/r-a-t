@@ -6,13 +6,17 @@ DEPENDENCIES:
 - gcc version >= 4.8 or clang version >= 3.4
 
 IMPORTANT NOTE:
-This software requires 64bit system. It may compile under 32bit system but
-it is not guarantied that it will work properly.
+This software requires 64bit POSIX/UNIX system. It may compile under 32bit system but
+it is not guarantied that it will work properly. Same note applies for MS Windows systems.
 
 CONFIGURATION
-
 1. Open config/config.pri file and configure Node class. Currently EXTENSIVE_TREE is broken.
 2. Go outside source directory and create a build directory.
 3. qmake <source_directory>
 4. make
-5. Run Node tests with test_common/test_common. Execute it with -h to see command line options.
+5. Run model tests with test_model/test_model. Execute it with -h to see command line options.
+6. Run sql module tests with test_sql/test_sql. Execute it with -h to see command line options.
+
+SQL MODULE:
+The sql module currently works only with MySQL database that has atm schema created and filled
+with the script atm_filled.sql
