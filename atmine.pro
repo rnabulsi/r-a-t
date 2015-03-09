@@ -10,5 +10,7 @@ SUBDIRS += \
 
 include(config/config.pri)
 
+common.depends = case
+model.depends = common sql
 test_common.depends = common
 test_model.depends = model

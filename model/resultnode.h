@@ -4,12 +4,33 @@
 #include <QObject>
 #include <node.h>
 
+/*!
+ * \brief The ResultNode class a specialized node that represents result.
+ */
 class ResultNode : public Node {
 public:
+    static const long DEFAULT_RESULTING_CATEGORY_ID = 63;
+
+    /*!
+     * \brief ResultNode constructs \ref result node with given parent.
+     * \param parent parent of the newly constructed node.
+     */
     explicit ResultNode(Node *parent = nullptr);
+
+    /*!
+     * \brief ResultNode copy constructor.
+     * \param node node to copy from.
+     */
     explicit ResultNode(const ResultNode &node);
 #if defined(REDUCE_THRU_DIACRITICS)
 #else
+    /*!
+     * \brief ResultNode constructs \ref ResultNode with given parameters.
+     * \param affix_id affix id
+     * \param previous_category_id previous category id.
+     * \param resulting_category_id resulting category id.
+     * \param accept_state accept state.
+     */
     ResultNode(long affix_id, long previous_category_id,
                long resulting_category_id, bool accept_state);
 #endif

@@ -3,8 +3,8 @@
 
 ResultNode::ResultNode(Node *parent)
     : Node(parent), m_previous_category_id(0), m_affix_id(0),
-      m_resulting_category_id(63), m_accept_state(true),
-      m_inflection_rule(QString::null) {}
+      m_resulting_category_id(DEFAULT_RESULTING_CATEGORY_ID),
+      m_accept_state(true), m_inflection_rule(QString::null) {}
 
 ResultNode::ResultNode(const ResultNode &node)
     : Node(node), m_previous_category_id(node.m_previous_category_id),
