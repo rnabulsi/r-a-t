@@ -49,7 +49,7 @@ public:
     /*!
      * \brief toString returns string representation of the result node.
      * \param isAffix
-     * \return
+     * \return string representation of the result node.
      */
     virtual QString toString(bool isAffix = true) const;
 
