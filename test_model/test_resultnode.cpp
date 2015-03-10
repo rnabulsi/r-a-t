@@ -3,7 +3,12 @@
 #include <resultnode.h>
 #include <letternode.h>
 
-void TestResultNode::cleanUpTestCase() { SqlManager::shutdown(); }
+void TestResultNode::initTestCase() {
+    QVERIFY2(SqlManager::instance().start(nullptr),
+             "Could not start SQL manager. The tests will fail or crash.");
+}
+
+void TestResultNode::cleanupTestCase() { SqlManager::shutdown(); }
 
 void TestResultNode::testToString() {
     QSharedPointer<ResultNode> node = QSharedPointer<ResultNode>::create();
@@ -44,13 +49,13 @@ void TestResultNode::testPreviousResultNode() {
     grandChild = new ResultNode();
     child->addChild(grandChild);
     QVERIFY2(dynamic_cast<ResultNode *>(grandChild)->previousResultNode() ==
-                 child,
+                 root,
              "The previousResultNode() should return the closest ancestor that "
              "is instance of ResultNode class.");
     delete root;
 
     root = new ResultNode();
-    QVERIFY2(dynamic_cast<ResultNode *>(grandChild)->previousResultNode() ==
+    QVERIFY2(dynamic_cast<ResultNode *>(root)->previousResultNode() ==
                  nullptr,
              "When node has no parent the previousResultNode() should return "
              "nullptr.");

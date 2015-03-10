@@ -16,7 +16,8 @@ include(../config/config.pri)
 HEADERS += node.h \
            letternode.h \
            resultnode.h \
-           model.h
+           model.h \
+    rawdata.hpp
 
 
 SOURCES += node.cpp \

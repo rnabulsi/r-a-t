@@ -22,7 +22,8 @@ private:
     virtual void testAssignment() = 0;
 
 private slots:
-    void cleanUpTestCase();
+    virtual void initTestCase();
+    virtual void cleanupTestCase();
     virtual void testToString();
     virtual void testPreviousResultNode();
 };

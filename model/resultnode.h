@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <node.h>
+#include <rawdata.hpp>
 
 /*!
  * \brief The ResultNode class a specialized node that represents result.

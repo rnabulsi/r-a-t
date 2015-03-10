@@ -2,7 +2,6 @@
 #define TEST_LETTERNODE_H
 
 #include <QtTest>
-#include <QObject>
 
 class TestLetterNode : public QObject
 {

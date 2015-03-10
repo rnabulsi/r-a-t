@@ -22,7 +22,9 @@ SOURCES += test_node.cpp \
     test_node_hash_table.cpp \
     test_node_extensive_tree.cpp \
     test_letternode.cpp \
-    test_resultnode.cpp
+    test_resultnode.cpp \
+    test_resultnode_default.cpp \
+    test_rawdata.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -32,7 +34,9 @@ HEADERS += \
     test_node_hash_table.h \
     test_node_extensive_tree.h \
     test_letternode.h \
-    test_resultnode.h
+    test_resultnode.h \
+    test_resultnode_default.h \
+    test_rawdata.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../model/release/ -lmodel
