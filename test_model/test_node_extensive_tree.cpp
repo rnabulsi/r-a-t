@@ -122,51 +122,49 @@ void TestNodeExtensiveTree::testAddRawChild() {
 }
 
 void TestNodeExtensiveTree::testAddSharedPointerChild() {
-    QSharedPointer<Node> parent = QSharedPointer<Node>::create();
-    int letterChildrenSize = parent->letterChildren().size();
-    int resultChildrenSize = parent->resultChildren().size();
+    QSharedPointer<Node> root = QSharedPointer<Node>::create();
+    int resultChildrenSize = root->resultChildren().size();
 
-    QVERIFY2(!parent->hasChildren(),
-             "After construction node should not have any children.");
     QSharedPointer<Node> child = QSharedPointer<LetterNode>::create();
-    parent->addChild(child);
-    QVERIFY2(child->parent() == parent, "After adding a letter node child, the "
-                                        "childs parent should be set to a node "
-                                        "to which it has been added.");
-
-    QVERIFY2(parent->letterChildren().size() == letterChildrenSize + 1,
-             "After adding a letter child node the number of letter children "
-             "should increase by one.");
-    QVERIFY2(parent->resultChildren().size() == resultChildrenSize,
+    root->addChild(child);
+    QVERIFY2(child->parent() == root.data(),
+             "After adding a letter node child, the "
+             "childs parent should be set to a node "
+             "to which it has been added.");
+    QVERIFY2(root->resultChildren().size() == resultChildrenSize,
              "After adding a letter child node the number of result children "
              "should remain unchanged.");
-    letterChildrenSize = parent->letterChildren().size();
+
+    QVERIFY2(root->letterChildren().size() == Node::LETTER_CHILDREN_COUNT,
+             "When using extensive tree for storing letter children, after "
+             "adding a letter child node the number of letter children must "
+             "remain " STR(Node::LETTER_CHILDREN_COUNT) ".");
+
+    root->addChild(child);
+    QVERIFY2(root->letterChildren().size() == Node::LETTER_CHILDREN_COUNT,
+             "When using extensive tree for storing letter children, after "
+             "adding the same letter child node twice the, number of letter "
+             "children must remain " STR(Node::LETTER_CHILDREN_COUNT) ".");
 
     child = QSharedPointer<ResultNode>::create();
-    parent->addChild(child);
-    QVERIFY2(child->parent() == parent, "After adding a result node child, the "
-                                        "childs parent should be set to a node "
-                                        "to which it has been added.");
-    QVERIFY2(parent->resultChildren().size() == resultChildrenSize + 1,
+    root->addChild(child);
+    QVERIFY2(child->parent() == root.data(),
+             "After adding a result node child, the "
+             "childs parent should be set to a node "
+             "to which it has been added.");
+    QVERIFY2(root->resultChildren().size() == resultChildrenSize + 1,
              "After adding a result child node the number of result children "
              "should increase by one.");
-    resultChildrenSize = parent->resultChildren().size();
-    QVERIFY2(parent->letterChildren().size() == letterChildrenSize,
-             "After adding a letter child node the number of result children "
-             "should remain unchanged.");
+    resultChildrenSize = root->resultChildren().size();
 
     child = QSharedPointer<Node>::create();
     Node *childParent = child->parent();
-    parent->addChild(child);
+    root->addChild(child);
     QVERIFY2(child->parent() == childParent,
              "After atempt to add a plain child node, the childs node parent "
              "should remain the same, as plain nodes cannot be added as "
              "children.");
-    QVERIFY2(parent->letterChildren().size() == letterChildrenSize,
-             "After atempt to add a plain child, the number of letter children "
-             "should remain unchanged, as plain nodes cannot be added as "
-             "children.");
-    QVERIFY2(parent->resultChildren().size() == resultChildrenSize,
+    QVERIFY2(root->resultChildren().size() == resultChildrenSize,
              "After atempt to add a plain child, the number of result children "
              "should remain unchanged, as plain nodes cannot be added as "
              "children.");
@@ -174,7 +172,7 @@ void TestNodeExtensiveTree::testAddSharedPointerChild() {
 
 void TestNodeExtensiveTree::testRemoveChildren() {
     Node *parent = new Node();
-    parent->addChild(new LetterNode('A'));
+    parent->addChild(new LetterNode(QString("ج").at(0)));
     parent->addChild(new ResultNode());
     parent->removeChildren();
     QVERIFY2(!parent->hasChildren(), "After removing children from the node, "

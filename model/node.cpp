@@ -64,7 +64,6 @@ QSharedPointer<LetterNode> Node::letterChild(const QChar &letter) {
     return m_letter_children.value(letter, QSharedPointer<LetterNode>(nullptr));
 #elif defined(EXTENSIVE_TREE)
     int i = letterIndex(letter);
-    qDebug() << "SIZE: " << m_letter_children.size() << " INDEX: " << i;
     return i >= 0 ? m_letter_children.at(i)
                   : QSharedPointer<LetterNode>(nullptr);
 #endif

@@ -7,8 +7,9 @@ void TestLetterNode::testConstruction() {
     LetterNode *parentlessNode = new LetterNode();
     QVERIFY2(parentlessNode->parent() == nullptr,
              "This node should not have a parent.");
-    QVERIFY2(!parentlessNode->hasChildren(),
-             "This node should not have children.");
+    QVERIFY2(parentlessNode->hasChildren(), "Letter nodes should always have "
+                                            "letter childred. Some of them may "
+                                            "be nullptr but they must exits.");
     QVERIFY2(parentlessNode->letter() == QChar('\0'),
              "When constructed without a letter the letter node should contain "
              "value '\0'");
@@ -18,7 +19,7 @@ void TestLetterNode::testConstruction() {
     delete childNode;
     delete parentlessNode;
 
-    QChar letter('T');
+    QChar letter(QString("ت").at(0));
     parentlessNode = new LetterNode(letter);
     QVERIFY2(parentlessNode->parent() == nullptr,
              "When letter node is constructed with letter then it should "
@@ -31,13 +32,13 @@ void TestLetterNode::testConstruction() {
 
 void TestLetterNode::testCopy() {
     QSharedPointer<LetterNode> parent =
-        QSharedPointer<LetterNode>::create(QChar('T'));
+        QSharedPointer<LetterNode>::create(QString("ت").at(0));
     LetterNode *child = new LetterNode(parent.data());
     ResultNode *anotherChild = new ResultNode(parent.data());
     parent->addChild(child);
     parent->addChild(anotherChild);
     LetterNode parentCopy(*parent);
-    QVERIFY2(parentCopy.letter() == QChar('T'),
+    QVERIFY2(parentCopy.letter() == QString("ت").at(0),
              "During the copy the letter should be copyied too.");
     QVERIFY2(parentCopy.hasChildren(),
              "During the copy the children should be copyed too.");
@@ -56,7 +57,7 @@ void TestLetterNode::testCopy() {
 }
 
 void TestLetterNode::testAssignent() {
-    LetterNode *parent = new LetterNode(QChar('T'));
+    LetterNode *parent = new LetterNode(QString("ت").at(0));
     LetterNode *child = new LetterNode(parent);
     ResultNode *anotherChild = new ResultNode(parent);
     parent->addChild(child);
@@ -92,11 +93,11 @@ void TestLetterNode::testAssignent() {
 void TestLetterNode::testToString() {
     QSharedPointer<LetterNode> node = QSharedPointer<LetterNode>::create();
     QString emptyNodeToString("--->($)");
-    QString nonEmptyNodeToString("--->(T)");
+    QString nonEmptyNodeToString("--->(ت)");
 
     QVERIFY2(node->toString() == emptyNodeToString,
              "Empty letter node string representation should be '--->($)'");
-    node->setLetter('T');
+    node->setLetter(QString("ت").at(0));
     QVERIFY2(node->toString() == nonEmptyNodeToString,
              "When letter is set in letter node the string representation "
              "should have that letter between parenthesis.");
@@ -104,18 +105,19 @@ void TestLetterNode::testToString() {
 
 void TestLetterNode::testSetLetter() {
     QSharedPointer<LetterNode> node = QSharedPointer<LetterNode>::create();
-    node->setLetter('T');
-    QVERIFY2(node->letter() == QChar('T'), "After setting a letter to a letter "
-                                           "node, it should have a letter "
-                                           "value that has been set.");
+    node->setLetter(QString("ت").at(0));
+    QVERIFY2(node->letter() == QString("ت").at(0),
+             "After setting a letter to a letter "
+             "node, it should have a letter "
+             "value that has been set.");
 }
 
 void TestLetterNode::testOperators() {
-    LetterNode aNode('A');
-    LetterNode a1Node('A');
-    LetterNode bNode('B');
-    LetterNode b1Node('B');
-    LetterNode cNode('C');
+    LetterNode aNode(QString("ا").at(0));
+    LetterNode a1Node(QString("ا").at(0));
+    LetterNode bNode(QString("ز").at(0));
+    LetterNode b1Node(QString("ز").at(0));
+    LetterNode cNode(QString("س").at(0));
 
     // Testing operator ==
     QVERIFY2(aNode == a1Node,
@@ -174,10 +176,12 @@ void TestLetterNode::testOperators() {
     QVERIFY2((aNode <= a1Node) && !(aNode > a1Node),
              "If letter node is lesser or equal to another, then it should not "
              "be greater at the same time and vice versa");
-    QVERIFY2((cNode >= bNode) && !(cNode < bNode),
-             "If letter node is greater or equal to another, then it should not "
-             "be lesser at the same time and vice versa");
-    QVERIFY2((bNode <= b1Node) && !(bNode > b1Node),
-             "If letter node is greater or equal to another, then it should not "
-             "be lesser at the same time and vice versa");
+    QVERIFY2(
+        (cNode >= bNode) && !(cNode < bNode),
+        "If letter node is greater or equal to another, then it should not "
+        "be lesser at the same time and vice versa");
+    QVERIFY2(
+        (bNode <= b1Node) && !(bNode > b1Node),
+        "If letter node is greater or equal to another, then it should not "
+        "be lesser at the same time and vice versa");
 }

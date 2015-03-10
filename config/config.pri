@@ -15,7 +15,7 @@ CONFIG += link_prl
 #
 # Values are mutualy exclusive and prioritized in the order given above.
 # The node class has to be configured or the compilation will fail.
-DEFINES += BINARY_SEARCH
+DEFINES += EXTENSIVE_TREE
 
 # ResultNode class configuration. Look at class documentation for details.
 #

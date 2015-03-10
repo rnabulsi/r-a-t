@@ -73,41 +73,45 @@ void TestNode::testToString() {
 }
 
 void TestNode::testLetterChild() {
+    // Six letters ب ج د ر ش ط
+    // Preceeding letter ظ
+    // Succeeding letter ض
+    // Letter that fits in the 'hole' ث
     Node *parent = new Node();
-    parent->addChild(new LetterNode('D'));
-    parent->addChild(new LetterNode('F'));
-    parent->addChild(new LetterNode('H'));
-    parent->addChild(new LetterNode('J'));
-    parent->addChild(new LetterNode('L'));
-    parent->addChild(new LetterNode('N'));
+    parent->addChild(new LetterNode(QString("ب").at(0))); //D
+    parent->addChild(new LetterNode(QString("ج").at(0))); //F
+    parent->addChild(new LetterNode(QString("د").at(0))); //H
+    parent->addChild(new LetterNode(QString("ر").at(0))); //J
+    parent->addChild(new LetterNode(QString("ش").at(0))); //L
+    parent->addChild(new LetterNode(QString("ط").at(0))); //N
 
-    auto child = parent->letterChild('G');
-    QVERIFY2(child.isNull(), "The letter node 'G' should not be found.");
-    child = parent->letterChild('B');
-    QVERIFY2(child.isNull(), "The letter node 'B' should not be found.");
-    child = parent->letterChild('X');
-    QVERIFY2(child.isNull(), "The letter node 'X' should not be found.");
-    child = parent->letterChild('D');
-    QVERIFY2(!child.isNull(), "The letter node 'D' should be found.");
-    QVERIFY2(child->letter() == 'D',
-             "The returned letter node should contain letter 'D'.");
-    child = parent->letterChild('N');
-    QVERIFY2(!child.isNull(), "The letter node 'N' should be found.");
-    QVERIFY2(child->letter() == 'N',
-             "The returned letter node should contain letter 'N'.");
-    child = parent->letterChild('J');
-    QVERIFY2(!child.isNull(), "The letter node 'J' should be found.");
-    QVERIFY2(child->letter() == 'J',
-             "The returned letter node should contain letter 'J'.");
+    auto child = parent->letterChild(QString("ث").at(0));
+    QVERIFY2(child.isNull(), "The letter node 'ث' should not be found.");
+    child = parent->letterChild(QString("ظ").at(0));
+    QVERIFY2(child.isNull(), "The letter node 'ظ' should not be found.");
+    child = parent->letterChild(QString("ض").at(0));
+    QVERIFY2(child.isNull(), "The letter node 'ض' should not be found.");
+    child = parent->letterChild(QString("ب").at(0));
+    QVERIFY2(!child.isNull(), "The letter node 'ب' should be found.");
+    QVERIFY2(child->letter() == QString("ب").at(0),
+             "The returned letter node should contain letter 'ب'.");
+    child = parent->letterChild(QString("ط").at(0));
+    QVERIFY2(!child.isNull(), "The letter node 'ط' should be found.");
+    QVERIFY2(child->letter() == QString("ط").at(0),
+             "The returned letter node should contain letter 'ط'.");
+    child = parent->letterChild(QString("ر").at(0));
+    QVERIFY2(!child.isNull(), "The letter node 'ر' should be found.");
+    QVERIFY2(child->letter() == QString("ر").at(0),
+             "The returned letter node should contain letter 'ر'.");
 
     delete parent;
 }
 
 void TestNode::testLetterChildren() {
     Node *parent = new Node();
-    QSharedPointer<LetterNode> nodeA = QSharedPointer<LetterNode>::create('A');
-    QSharedPointer<LetterNode> nodeB = QSharedPointer<LetterNode>::create('B');
-    QSharedPointer<LetterNode> nodeC = QSharedPointer<LetterNode>::create('C');
+    QSharedPointer<LetterNode> nodeA = QSharedPointer<LetterNode>::create(QString("ا").at(0));
+    QSharedPointer<LetterNode> nodeB = QSharedPointer<LetterNode>::create(QString("ب").at(0));
+    QSharedPointer<LetterNode> nodeC = QSharedPointer<LetterNode>::create(QString("ج").at(0));
     parent->addChild(nodeA);
     parent->addChild(nodeB);
     parent->addChild(nodeC);
