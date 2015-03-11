@@ -5,7 +5,7 @@ CONFIG += warn_on
 QMAKE_CFLAGS += -Wall -Wextra -Wmissing-braces
 QMAKE_CXXFLAGS += -Wall -Wextra -Wmissing-braces
 
-# Enable dependancy tracking
+# Enable dependency tracking
 CONFIG += create_prl
 CONFIG += link_prl
 
@@ -23,4 +23,4 @@ DEFINES += EXTENSIVE_TREE
 #
 # Value can be not defined too, causing default implementation of ResultNode
 # to be compiled.
-DEFINES +=
+DEFINES += REDUCE_THRU_DIACRITICS

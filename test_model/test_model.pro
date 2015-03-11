@@ -24,7 +24,8 @@ SOURCES += test_node.cpp \
     test_letternode.cpp \
     test_resultnode.cpp \
     test_resultnode_default.cpp \
-    test_rawdata.cpp
+    test_rawdata.cpp \
+    test_resultnode_reduce_thru_diacritics.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
@@ -36,7 +37,8 @@ HEADERS += \
     test_letternode.h \
     test_resultnode.h \
     test_resultnode_default.h \
-    test_rawdata.h
+    test_rawdata.h \
+    test_resultnode_reduce_thru_diacritics.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../model/release/ -lmodel

@@ -7,13 +7,27 @@ ResultNode::ResultNode(Node *parent)
       m_accept_state(true), m_inflection_rule(QString::null) {}
 
 ResultNode::ResultNode(const ResultNode &node)
-    : Node(node), m_previous_category_id(node.m_previous_category_id),
+    : Node(node),
+#ifdef REDUCE_THRU_DIACRITICS
+      m_raw_data(node.rawData()),
+#endif
+      m_previous_category_id(node.m_previous_category_id),
       m_affix_id(node.m_affix_id),
       m_resulting_category_id(node.m_resulting_category_id),
       m_accept_state(node.m_accept_state),
-      m_inflection_rule(node.m_inflection_rule) {}
+      m_inflection_rule(node.m_inflection_rule) {
+}
 
 #if defined(REDUCE_THRU_DIACRITICS)
+ResultNode::ResultNode(long affix_id, long previous_category_id,
+                       long resulting_category_id, bool accept_state,
+                       QString original, QString inflected)
+    : Node(), m_previous_category_id(previous_category_id),
+      m_affix_id(affix_id), m_resulting_category_id(resulting_category_id),
+      m_accept_state(accept_state), m_inflection_rule(QString::null) {
+    addRawData(original, inflected);
+}
+
 #else
 ResultNode::ResultNode(long affix_id, long previous_category_id,
                        long resulting_category_id, bool accept_state)
@@ -29,6 +43,9 @@ ResultNode &ResultNode::operator=(const ResultNode &node) {
     m_resulting_category_id = node.m_resulting_category_id;
     m_accept_state = node.m_accept_state;
     m_inflection_rule = node.m_inflection_rule;
+#ifdef REDUCE_THRU_DIACRITICS
+    m_raw_data.append(node.m_raw_data);
+#endif
     return *this;
 }
 
@@ -52,4 +69,11 @@ QString ResultNode::toString(bool isAffix) const {
         isAffix ? SqlManager::instance().categoryName(m_resulting_category_id)
                 : QString("%1").arg(m_resulting_category_id)));
     return retVal;
+}
+
+void ResultNode::addRawData(QString original, QString inflected) {
+    RawData rawData(original, inflected);
+    if (!m_raw_data.contains(rawData)) {
+        m_raw_data.append(rawData);
+    }
 }

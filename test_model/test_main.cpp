@@ -11,6 +11,7 @@
 #include <test_letternode.h>
 
 #ifdef REDUCE_THRU_DIACRITICS
+#include <test_resultnode_reduce_thru_diacritics.h>
 #else
 #include <test_resultnode_default.h>
 #endif
@@ -31,6 +32,7 @@ int main(int argc, char **argv) {
     testNode = new TestNodeExtensiveTree;
 #endif
 #ifdef REDUCE_THRU_DIACRITICS
+    testResultNode = new TestResultNodeReduceThruDiacritics;
 #else
     testResultNode = new TestResultNodeDefault;
 #endif

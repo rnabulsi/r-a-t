@@ -23,11 +23,24 @@ public:
      * \param node node to copy from.
      */
     explicit ResultNode(const ResultNode &node);
+
 #if defined(REDUCE_THRU_DIACRITICS)
+    /*!
+     * \brief ResultNode constructs \ref ResultNode with given parameters.
+     * \param affix_id affix id.
+     * \param previous_category_id previous category id.
+     * \param resulting_category_id resulting category id.
+     * \param accept_state accept state.
+     * \param original orignal string for the raw data.
+     * \param inflected inflected string for the raw data.
+     */
+    ResultNode(long affix_id, long previous_category_id,
+               long resulting_category_id, bool accept_state, QString original,
+               QString inflected);
 #else
     /*!
      * \brief ResultNode constructs \ref ResultNode with given parameters.
-     * \param affix_id affix id
+     * \param affix_id affix id.
      * \param previous_category_id previous category id.
      * \param resulting_category_id resulting category id.
      * \param accept_state accept state.
@@ -35,6 +48,7 @@ public:
     ResultNode(long affix_id, long previous_category_id,
                long resulting_category_id, bool accept_state);
 #endif
+
     /*!
      * \brief ~ResultNode the destructor.
      */
@@ -121,7 +135,28 @@ public:
      */
     void setInflectionRule(const QString &rule) { m_inflection_rule = rule; }
 
+#ifdef REDUCE_THRU_DIACRITICS
+    /*!
+     * \brief rawData returns list of \ref RawData instances.
+     * \return list of \ref RawData instances.
+     */
+    const QList<RawData> &rawData() const { return m_raw_data; }
+    /*!
+     * \brief addRawData Adds \ref RawData item to the list.
+     * \param original original string.
+     * \param inflected inflected string.
+     */
+    void addRawData(QString original, QString inflected);
+#endif
+
 private:
+#ifdef REDUCE_THRU_DIACRITICS
+    /*!
+     * \brief m_raw_data list of the raw data items.
+     */
+    QList<RawData> m_raw_data;
+#endif
+
     /*!
      * \brief m_previous_category_id id of the previous category.
      */
@@ -139,6 +174,7 @@ private:
      * \brief m_acceptState accept state. Default is \code true.
      */
     bool m_accept_state;
+
     /*!
      * \brief m_inflection_rule an inflection rule.
      */
