@@ -1,4 +1,4 @@
-#include <test_letternode.h>
+#include "test_letternode.h"
 #include <letternode.h>
 #include <resultnode.h>
 #include <QChar>

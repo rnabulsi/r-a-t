@@ -1,22 +1,22 @@
 #include <QtTest>
 
 #if defined(BINARY_SEARCH)
-#include <test_node_binary_search.h>
+#include "test_node_binary_search.h"
 #elif defined(HASH_TABLE)
-#include <test_node_hash_table.h>
+#include "test_node_hash_table.h"
 #elif defined(EXTENSIVE_TREE)
-#include <test_node_extensive_tree.h>
+#include "test_node_extensive_tree.h"
 #endif
 
-#include <test_letternode.h>
+#include "test_letternode.h"
 
 #ifdef REDUCE_THRU_DIACRITICS
-#include <test_resultnode_reduce_thru_diacritics.h>
+#include "test_resultnode_reduce_thru_diacritics.h"
 #else
-#include <test_resultnode_default.h>
+#include "test_resultnode_default.h"
 #endif
 
-#include <test_rawdata.h>
+#include "test_rawdata.h"
 
 
 int main(int argc, char **argv) {

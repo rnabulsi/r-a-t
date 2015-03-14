@@ -3,7 +3,7 @@
 #include <QFile>
 #include <cstdio>
 
-#include <emptyprogress.h>
+#include "emptyprogress.h"
 
 Sarf::Sarf(QObject *parent)
     : QObject(parent), m_errors_stream(), m_input_stream(), m_output_stream(),
@@ -75,3 +75,6 @@ bool Sarf::stop() {
 #warning Still unimplemented!
     return false;
 }
+
+#include "moc_sarf.cpp"
+

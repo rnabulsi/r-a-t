@@ -1,7 +1,7 @@
 #ifndef EMPTYPROGRESS_H
 #define EMPTYPROGRESS_H
 
-#include <atmprogress.h>
+#include "atmprogress.h"
 
 #warning Review class purpose
 

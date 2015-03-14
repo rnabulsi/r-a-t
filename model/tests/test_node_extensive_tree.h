@@ -2,7 +2,7 @@
 #ifndef TEST_NODE_EXTENSIVE_TREE_H
 #define TEST_NODE_EXTENSIVE_TREE_H
 
-#include <test_node.h>
+#include "test_node.h"
 
 class TestNodeExtensiveTree : public TestNode {
     Q_OBJECT

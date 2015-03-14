@@ -1,5 +1,5 @@
 #ifdef EXTENSIVE_TREE
-#include <test_node_extensive_tree.h>
+#include "test_node_extensive_tree.h"
 #include <node.h>
 #include <letternode.h>
 #include <resultnode.h>

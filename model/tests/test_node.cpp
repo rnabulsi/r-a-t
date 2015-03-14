@@ -1,4 +1,4 @@
-#include <test_node.h>
+#include "test_node.h"
 #include <node.h>
 #include <letternode.h>
 #include <resultnode.h>

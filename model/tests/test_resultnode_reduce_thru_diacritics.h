@@ -2,7 +2,7 @@
 #ifndef TESTRESULTNODEREDUCETHRUDIACRITICS_H
 #define TESTRESULTNODEREDUCETHRUDIACRITICS_H
 
-#include <test_resultnode.h>
+#include "test_resultnode.h"
 
 class TestResultNodeReduceThruDiacritics : public TestResultNode {
     Q_OBJECT

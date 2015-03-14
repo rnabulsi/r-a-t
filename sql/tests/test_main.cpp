@@ -1,7 +1,7 @@
 #include <QtTest>
 #include <QtDebug>
 
-#include <test_sqlmanager.h>
+#include "test_sqlmanager.h"
 
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);

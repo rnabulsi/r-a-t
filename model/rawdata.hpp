@@ -15,10 +15,9 @@ public:
      * \param original orignal string.
      * \param inflected inflected string.
      */
-    RawData(const QString &original, const QString &inflected = "*") {
-        m_original = original;
-        m_inflected = (original == inflected) ? "*" : inflected;
-    }
+    RawData(const QString &original, const QString &inflected = "*")
+        : m_original(original),
+          m_inflected(original == inflected ? "*" : inflected) {}
 
     /*!
      * \brief actual returns actual/resulting string. If string is not inflected
