@@ -1,0 +1,9 @@
+--std=c++11
+-I /Users/toptan/Applications/Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers
+-I /Users/toptan/Applications/Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers
+-I /Users/toptan/Applications/Qt/5.4/clang_64/lib/QtTest.framework/Versions/5/Headers
+-I /Users/toptan/Applications/Qt/5.4/clang_64/mkspecs/macx-clang
+-I case
+-I common
+-I model
+-I sql
