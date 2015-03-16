@@ -1,0 +1,19 @@
+This file serves as a note to developers while porting the old code to write
+down which conditional code branches are ported:
+
+LOAD_FROM_FILE - defined in common.h
+Affected files:
+ATSarf/src/cache/compatibility_rules.cpp
+ATSarf/src/cache/database_info_block.cpp
+ATSarf/src/case/bibleGeneology.cpp
+ATSarf/src/case/hadithCommon.cpp
+ATSarf/src/common/common.h
+ATSarf/src/common/global_variables.cpp
+ATSarf/src/common/tree.cpp
+ATSarf/src/common/tree.h
+ATSarf/src/sql/sql_queries.cpp
+
+USE_BAMA - defined in common.h
+Affected files:
+ATSarf/src/common/common.h
+

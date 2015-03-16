@@ -23,6 +23,5 @@ target_link_libraries(${PROJECT_TEST_NAME} common)
 target_link_libraries(${PROJECT_TEST_NAME} Qt5::Core)
 target_link_libraries(${PROJECT_TEST_NAME} Qt5::Sql)
 target_link_libraries(${PROJECT_TEST_NAME} Qt5::Test)
-add_test(NAME "Atmine model tests" COMMAND ${PROJECT_TEST_NAME})
-
+add_test(NAME "Atmine-model-tests" COMMAND ${PROJECT_TEST_NAME})
 

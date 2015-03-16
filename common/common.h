@@ -3,7 +3,6 @@
 
 #include "common_global.h"
 
-#include <QChar>
-#include <QSharedPointer>
+const int MAX_SOURCES = 256;
 
 #endif // COMMON_H
