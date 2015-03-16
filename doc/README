@@ -4,18 +4,18 @@ DEPENDENCIES:
 
 - Qt5 sdk version >= 5.2
 - gcc version >= 4.8 or clang version >= 3.4
+- cmake version >= 2.8.11
 
 IMPORTANT NOTE:
 This software requires 64bit POSIX/UNIX system. It may compile under 32bit system but
 it is not guarantied that it will work properly. Same note applies for MS Windows systems.
 
 CONFIGURATION
-1. Open config/config.pri file and configure Node class. Currently EXTENSIVE_TREE is broken.
+1. Open cmake/AtmineConfig.cmake file and configure classes.
 2. Go outside source directory and create a build directory.
-3. qmake <source_directory>
+3. cmake <source_directory>
 4. make
-5. Run model tests with test_model/test_model. Execute it with -h to see command line options.
-6. Run sql module tests with test_sql/test_sql. Execute it with -h to see command line options.
+5. Run tests with make test
 
 SQL MODULE:
 The sql module currently works only with MySQL database that has atm schema created and filled
