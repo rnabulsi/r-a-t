@@ -13,7 +13,9 @@ private slots:
     void initTestCase();
     void cleanupTestCase();
     void testStart();
-    void testColumnName();
+    void testCategoryName();
+    void testSourceIds();
+    void testAbstractCategoryIds();
 };
 
 #endif // TESTSQLMANAGER_H

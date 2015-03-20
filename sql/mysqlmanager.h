@@ -15,6 +15,7 @@ class ATMProgress;
  */
 class MySqlManager : public SqlManager {
     friend class SqlManager;
+
 public:
     /*!
      * \brief ~MySqlManager The destructor. Closes and removes all active
@@ -28,6 +29,12 @@ public:
     /// \copydoc SqlManager::categoryName
     virtual QString categoryName(long categoryId) override;
 
+    /// \copydoc SqlManager::loadSourceIds
+    virtual bool loadSourceIds(std::vector<int> &source_ids) override;
+
+    /// \copydoc SqlManager::loadAbstractCategoryIds
+    virtual bool loadAbstractCategoryIds(std::vector<int> &abstract_category_ids) override;
+
 protected:
     /*!
      * \brief MySqlManager The one and only constructor.
@@ -36,6 +43,7 @@ protected:
 
     /// \copydoc SqlManager::openConnection
     virtual bool openConnection() override;
+
 private:
     /*!
      * \brief Explicitly disabled copy constructor.

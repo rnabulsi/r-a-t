@@ -10,7 +10,8 @@
 #include "emptyprogress.h"
 
 Sarf::Sarf(QObject *parent)
-    : QObject(parent), m_errors_stream(), m_input_stream(), m_output_stream(), m_invalid_bitset(MAX_SOURCES) {
+    : QObject(parent), m_errors_stream(), m_input_stream(), m_output_stream(), m_invalid_bitset(MAX_SOURCES),
+      m_source_ids(), m_abstract_category_ids() {
 #warning Still unimplemented!
     m_invalid_bitset.setBit(MAX_SOURCES - 1);
 }
@@ -50,8 +51,12 @@ bool Sarf::start(QFile *output_file, QFile *errors_file, ATMProgress *progress_r
         retVal = SqlManager::instance().start(progress_reporter);
     }
     if (retVal) {
-        //    generate_bit_order("source", source_ids);
-        //    generate_bit_order("category", abstract_category_ids, "abstract");
+        retVal = SqlManager::instance().loadSourceIds(m_source_ids);
+    }
+    if (retVal) {
+        retVal = SqlManager::instance().loadAbstractCategoryIds(m_abstract_category_ids);
+    }
+    if (retVal) {
         //    database_info.fill(progress_reporter);
     } else {
         m_errors_stream << "SQL Engine failed to initialize.";
@@ -73,8 +78,12 @@ bool Sarf::start(QString *output_string, QString *errors_string, ATMProgress *pr
     initializeVariables();
     retVal = SqlManager::instance().start(progress_reporter);
     if (retVal) {
-        //    generate_bit_order("source", source_ids);
-        //    generate_bit_order("category", abstract_category_ids, "abstract");
+        retVal = SqlManager::instance().loadSourceIds(m_source_ids);
+    }
+    if (retVal) {
+        retVal = SqlManager::instance().loadAbstractCategoryIds(m_abstract_category_ids);
+    }
+    if (retVal) {
         //    database_info.fill(progress_reporter);
         m_output_stream << "Engine started.";
     } else {

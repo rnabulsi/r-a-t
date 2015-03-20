@@ -4,6 +4,7 @@
 #include <QBitArray>
 #include <QObject>
 #include <QTextStream>
+#include <vector>
 
 #warning Review class purpose
 
@@ -85,8 +86,17 @@ private:
      */
     QBitArray m_invalid_bitset;
     /*!
-     * \brief Initializes all neccessary variables.
+     * \brief m_source_ids a vector containing source ids.
      */
+    std::vector<int> m_source_ids;
+    /*!
+     * \brief m_abstract_category_ids a vector containing abstract category ids.
+     */
+    std::vector<int> m_abstract_category_ids;
+
+    /*!
+      * \brief Initializes all neccessary variables.
+      */
     void initializeVariables();
 };
 
