@@ -1,10 +1,11 @@
 -std=c++11
--I/Users/toptan/Applications/Qt/5.4/clang_64/lib/QtCore.framework/Versions/5/Headers
--I/Users/toptan/Applications/Qt/5.4/clang_64/lib/QtSql.framework/Versions/5/Headers
--I/Users/toptan/Applications/Qt/5.4/clang_64/lib/QtTest.framework/Versions/5/Headers
--I/Users/toptan/Applications/Qt/5.4/clang_64/mkspecs/macx-clang
--Icase
 -Icommon
 -Imodel
 -Isql
--F/Users/toptan/Applicatons/Qt/5.4/clang_64/lib
+-Iengine
+-iframework /opt/local/Library/Frameworks
+-isystem /opt/local/Library/Frameworks/QtCore.framework/Headers
+-isystem /opt/local/Library/Frameworks/QtSql.framework/Headers
+-isystem /opt/local/Library/Frameworks/QtTest.framework/Headers
+-isystem /opt/local/share/qt5/mkspecs/macx-clang
+

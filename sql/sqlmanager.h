@@ -5,8 +5,8 @@
 #include <QSharedPointer>
 #include <QSqlDatabase>
 #include <QSqlDriver>
+#include <QVector>
 #include <memory>
-#include <vector>
 
 #warning Still unimplemented
 #warning Review class functionalities
@@ -59,14 +59,14 @@ public:
      * \param source_ids a vector to load ids into.
      * \return \code false on any failure.
      */
-    virtual bool loadSourceIds(std::vector<int> &source_ids) = 0;
+    virtual bool loadSourceIds(QVector<int> &source_ids) = 0;
 
     /*!
      * \brief loadAbstractCategoryIds loads abstract category ids into given vector.
      * \param abstract_category_ids a vector to load ids into.
      * \return \code false on any failure.
      */
-    virtual bool loadAbstractCategoryIds(std::vector<int> &abstract_category_ids) = 0;
+    virtual bool loadAbstractCategoryIds(QVector<int> &abstract_category_ids) = 0;
 protected:
     /*!
      * \brief SqlManager The one and only constructor.

@@ -4,7 +4,8 @@
 #include <QtDebug>
 #include <atmineconfiguration.h>
 
-MySqlManager::MySqlManager() {}
+MySqlManager::MySqlManager() {
+}
 
 MySqlManager::~MySqlManager() {}
 
@@ -49,7 +50,7 @@ QString MySqlManager::categoryName(long categoryId) {
     return name;
 }
 
-bool MySqlManager::loadSourceIds(std::vector<int> &source_ids) {
+bool MySqlManager::loadSourceIds(QVector<int> &source_ids) {
     if (!m_database.isOpen()) {
         return false;
     }
@@ -68,7 +69,7 @@ bool MySqlManager::loadSourceIds(std::vector<int> &source_ids) {
     return true;
 }
 
-bool MySqlManager::loadAbstractCategoryIds(std::vector<int> &abstract_category_ids) {
+bool MySqlManager::loadAbstractCategoryIds(QVector<int> &abstract_category_ids) {
     if (!m_database.isOpen()) {
         return false;
     }

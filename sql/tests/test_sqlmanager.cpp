@@ -24,13 +24,13 @@ void TestSqlManager::testCategoryName() {
 }
 
 void TestSqlManager::testSourceIds() {
-    std::vector<int> source_ids;
+    QVector<int> source_ids;
     QVERIFY2(SqlManager::instance().loadSourceIds(source_ids), "Loading source ids has failed.");
     QVERIFY2(source_ids.size() == 11, "There should be 11 sources.");
 }
 
 void TestSqlManager::testAbstractCategoryIds() {
-    std::vector<int> abstract_category_ids;
+    QVector<int> abstract_category_ids;
     QVERIFY2(SqlManager::instance().loadAbstractCategoryIds(abstract_category_ids),
              "Loading abstract category ids has failed.");
     QVERIFY2(abstract_category_ids.size() == 149, "There should be 149 abstract categories.");

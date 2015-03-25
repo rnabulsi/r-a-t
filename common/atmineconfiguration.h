@@ -27,25 +27,25 @@ public:
      * \brief databaseType returns database type to use.
      * \return database type to use.
      */
-    QSqlDriver::DbmsType databaseType();
+    const QString databaseType() const;
 
     /*!
      * \brief databaseSchema returns database schema to use.
      * \return schema to use.
      */
-    const QString databaseSchema();
+    const QString databaseSchema() const;
 
     /*!
      * \brief databaseUser returns database connection username.
      * \return username to use.
      */
-    const QString databaseUser();
+    const QString databaseUser() const;
 
     /*!
      * \brief databasePassword returns database connection passwrod.
      * \return password to use.
      */
-    const QString databasePassword();
+    const QString databasePassword() const;
 
 private:
     /*!

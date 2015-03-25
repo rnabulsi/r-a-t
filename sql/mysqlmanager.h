@@ -30,10 +30,10 @@ public:
     virtual QString categoryName(long categoryId) override;
 
     /// \copydoc SqlManager::loadSourceIds
-    virtual bool loadSourceIds(std::vector<int> &source_ids) override;
+    virtual bool loadSourceIds(QVector<int> &source_ids) override;
 
     /// \copydoc SqlManager::loadAbstractCategoryIds
-    virtual bool loadAbstractCategoryIds(std::vector<int> &abstract_category_ids) override;
+    virtual bool loadAbstractCategoryIds(QVector<int> &abstract_category_ids) override;
 
 protected:
     /*!

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QTextStream>
 #include <vector>
+#include <QVector>
 
 #warning Review class purpose
 
@@ -88,11 +89,11 @@ private:
     /*!
      * \brief m_source_ids a vector containing source ids.
      */
-    std::vector<int> m_source_ids;
+    QVector<int> m_source_ids;
     /*!
      * \brief m_abstract_category_ids a vector containing abstract category ids.
      */
-    std::vector<int> m_abstract_category_ids;
+    QVector<int> m_abstract_category_ids;
 
     /*!
       * \brief Initializes all neccessary variables.

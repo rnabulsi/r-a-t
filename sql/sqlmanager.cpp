@@ -14,13 +14,10 @@ std::unique_ptr<SqlManager> SqlManager::m_instance;
 SqlManager &SqlManager::instance() {
     static std::once_flag once;
     std::call_once(once, [] {
-        switch (ATMineConfiguration::instance().databaseType()) {
-        case QSqlDriver::MySqlServer:
+        if (ATMineConfiguration::instance().databaseType() == "QMYSQL") {
             m_instance.reset(new MySqlManager);
-            break;
-        default:
+        } else {
             m_instance.reset(new MySqlManager);
-            break;
         }
     });
     return *m_instance.get();
@@ -33,8 +30,7 @@ void SqlManager::shutdown() {
 
 SqlManager::SqlManager() : m_database(), m_connectionName("SarfConnection") {}
 
-SqlManager::~SqlManager() {
-}
+SqlManager::~SqlManager() {}
 
 void SqlManager::closeAndRemoveConnection() {
     if (m_database.isValid() && m_database.isOpen()) {

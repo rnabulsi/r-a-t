@@ -2,7 +2,7 @@ Quick and dirty build instructions. This document will expand with time.
 
 DEPENDENCIES:
 
-- Qt5 sdk version >= 5.2
+- Qt5 sdk version >= 5.3
 - gcc version >= 4.8 or clang version >= 3.4
 - cmake version >= 2.8.11
 
@@ -10,13 +10,19 @@ IMPORTANT NOTE:
 This software requires 64bit POSIX/UNIX system. It may compile under 32bit system but
 it is not guarantied that it will work properly. Same note applies for MS Windows systems.
 
-CONFIGURATION
-1. Open cmake/AtmineConfig.cmake file and configure classes.
-2. Go outside source directory and create a build directory.
-3. cmake <source_directory>
-4. make
-5. Run tests with make test
+CONFIGURATION & BUILDING
+ 1. Checkout the code with git clone git@github.com:rnabulsi/r-a-t.git atmine
+ 2. Enter the source code root directory with cd atmine
+ 3. Open cmake/AtmineConfig.cmake file and configure classes. Reasonable defaults are there.
+ 4. Check the database schema, username and password in common/atmineconfiguration.cpp
+ 5. Go outside source directory with cd ..
+ 6. Create build directory with mkdir build
+ 7. Enter build directory with cd build
+ 8. Prepare the code for building with cmake ../atmine
+ 9. Build the code with make
+10. Run tests with make test
 
 SQL MODULE:
 The sql module currently works only with MySQL database that has atm schema created and filled
-with the script atm_filled.sql
+with the script atm_filled.sql which is available in the original code repository.
+

@@ -14,18 +14,18 @@ ATMineConfiguration::ATMineConfiguration() : QObject() {}
 
 ATMineConfiguration::~ATMineConfiguration() {}
 
-QSqlDriver::DbmsType ATMineConfiguration::databaseType() {
-    return QSqlDriver::MySqlServer;
+const QString ATMineConfiguration::databaseType() const {
+    return "QMYSQL";
 }
 
-const QString ATMineConfiguration::databaseSchema() {
-    return QString("atm");
+const QString ATMineConfiguration::databaseSchema() const {
+    return "atm";
 }
 
-const QString ATMineConfiguration::databaseUser() {
-    return QString("root");
+const QString ATMineConfiguration::databaseUser() const {
+    return "root";
 }
 
-const QString ATMineConfiguration::databasePassword() {
-    return QString("root");
+const QString ATMineConfiguration::databasePassword() const {
+    return "root";
 }
